@@ -24,18 +24,20 @@ def formulario_login(on_submit):
             ui.button("Ingresar", on_click=on_login).props("flat") 
 
 @page('/')
-def login():
+async def login():
     @component
     def fijo():
         posicion, setPosicion = use_state("bottom")
         with ui.page_sticky(position=posicion):
             ui.button("Boton fijo").on_click(lambda: setPosicion("top") if posicion == "bottom" else setPosicion("bottom"))
 
-    ui.markdown("## Bienvenido al login")
-    fijo()
+    #ui.markdown("## Bienvenido al login")
     with ui.image("https://picsum.photos/seed/13/800/600?blur=1").classes(
         "absolute-full object-cover"
     ):
-        formulario_login(
-            lambda datos: ui.notify(f"Username: {datos["username"]}, Password: {datos["password"]}")
-        )
+        #fijo()
+        def form_enviado(datos):
+            ui.notify(f"Username: {datos["username"]}, Password: {datos["password"]}")
+            ui.navigate.to("/logged")
+
+        formulario_login(form_enviado)
