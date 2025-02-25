@@ -1,6 +1,5 @@
 from nicegui_router import page, ui, component, use_state
 
-@component
 def formulario_login(on_submit):
     def on_login():
         if username.value and password.value:
@@ -23,19 +22,11 @@ def formulario_login(on_submit):
         with ui.card_actions().style("background-color: #fff; padding-bottom: 10px;"):
             ui.button("Ingresar", on_click=on_login).props("flat") 
 
-@page('/')
+@page("/")
 async def login():
-    @component
-    def fijo():
-        posicion, setPosicion = use_state("bottom")
-        with ui.page_sticky(position=posicion):
-            ui.button("Boton fijo").on_click(lambda: setPosicion("top") if posicion == "bottom" else setPosicion("bottom"))
-
-    #ui.markdown("## Bienvenido al login")
     with ui.image("https://picsum.photos/seed/13/800/600?blur=1").classes(
         "absolute-full object-cover"
     ):
-        #fijo()
         def form_enviado(datos):
             ui.notify(f"Username: {datos["username"]}, Password: {datos["password"]}")
             ui.navigate.to("/logged")
