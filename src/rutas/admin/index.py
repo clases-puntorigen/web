@@ -29,6 +29,6 @@ async def login():
     ):
         def form_enviado(datos):
             ui.notify(f"Username: {datos["username"]}, Password: {datos["password"]}")
-            ui.navigate.to("/logged")
+            ui.navigate.to("/admin/logged")
 
         formulario_login(form_enviado)
