@@ -15,7 +15,11 @@ async def startup_db_client():
 server = Server(
     title='Servidor de Jose', 
     routes_dir=Path(__file__).parent / "rutas",
-    on_startup=startup_db_client
+    on_startup=startup_db_client,
+    ui={
+        "language": "es"
+    }
+
 )
 
 # Get the Fastapi app instance (for advanced use cases)
