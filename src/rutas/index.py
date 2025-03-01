@@ -37,7 +37,7 @@ async def inicio():
         fecha_hoy = datetime.today().date()
         with ui.row():
             ui.date(value=fecha_hoy, on_change=lambda e: informe_del_dia.refresh(e.value))        
-            informe_del_dia(fecha_hoy)
+            await informe_del_dia(fecha_hoy)
 
     except Exception as e:
         ui.label(f"Error al obtener datos: {str(e)}").classes("text-negative")
